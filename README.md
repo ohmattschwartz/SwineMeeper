@@ -1,0 +1,3 @@
+# bomb-sniffer
+
+This project re-creates the classic MineSweeper™ game from our childhood as a React app. The game logic is defined in the API that a fetch request is made to when individual cells are clicked. The row/column are passed as arguments to the query string in the API fetch request and the response contains the updated game state. This causes React to re-render the game board based on this updated state. Left-click to select a cell, right-click to flag a cell. Clicking on a bomb ends the game and reveals the whole board, and right-clicking on a flagged cell will un-flag the cell. Enjoy!

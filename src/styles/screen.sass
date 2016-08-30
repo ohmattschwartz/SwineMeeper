@@ -1,0 +1,62 @@
+@import 'utility'
+
+$base-text-size: 16px
+$base-font-family: "VT323", monospace
+
+html
+  text-size-adjust: 100%
+
+body
+  @include font-smoothing(on)
+  margin: 0
+  font: $base-text-size / 1 $base-font-family
+  background-image: url("../images/background.png")
+  background-size: cover
+  background-repeat: no-repeat
+  min-height: 100vh
+
+h1
+  margin-bottom: 1.5em
+  margin-top: 0
+  color: #D7DEE1
+
+#root > div
+  display: flex
+  justify-content: center
+  flex-direction: column
+  align-items: center
+  min-height: 100vh
+
+table
+  border-spacing: 0
+
+  td
+    height: 16px
+    width: 16px
+    line-height: 16px
+    text-align: center
+    font-weight: bold
+    background-size: contain
+    background-repeat: no-repeat
+    background-position: center
+
+    &.empty, &.numbered
+      background-image: url("../images/revealed.png")
+
+    &.flagged
+      background-image: url("../images/flag.png"), url("../images/unrevealed.png")
+      background-size: 60%, contain
+
+    &.bomb
+      background-image: url("../images/bomb.png"), url("../images/red.png")
+      background-size: 60%, contain
+
+    &.unrevealed
+      background-image: url("../images/unrevealed.png")
+
+    &.flag-bomb
+      background-image: url("../images/bomb.png"), url("../images/green.png")
+      background-size: 60%, contain
+
+    &.empty, &.flagged, &.bomb, &.flag-bomb
+      color: transparent
