@@ -4,7 +4,6 @@ import Home from './Home'
 import '../styles/screen.sass'
 
 class App extends Component {
-
   constructor () {
     super()
     this.state = {
@@ -12,23 +11,29 @@ class App extends Component {
       difficulty: 0
     }
   }
+  _goHome = (scr) => {
+    this.setState({currentScreen: scr})
+  }
 
-  _playgame = (scr, difficulty) => {
+  _playGame = (scr, difficulty) => {
     this.setState({
       currentScreen: scr,
       difficulty: difficulty
     })
   }
+
   render () {
     let screen
     switch (this.state.currentScreen) {
-      case 'home': screen = <Home play={this._playgame} />
+      case 'home': screen = <Home play={this._playGame} />
         break
-      case 'game': screen = <Game difficulty={this.state.difficulty} />
+      case 'game': screen = <Game difficulty={this.state.difficulty} goHome={this._goHome} />
         break
-      default: screen = <Home play={this._playgame} />
+      default: screen = <Home play={this._playGame} />
     }
-    return <div>{screen}</div>
+    return <div className="App">
+      {screen}
+    </div>
   }
 }
 

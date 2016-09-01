@@ -3,7 +3,7 @@ import Cell from './Cell'
 
 const API_URL = 'http://minesweeper-api.herokuapp.com'
 
-class Game extends Component {
+class App extends Component {
   constructor () {
     super()
     this.state = {
@@ -12,11 +12,30 @@ class Game extends Component {
   }
 
   componentDidMount () {
-    window.fetch(`${API_URL}/games?difficulty=${this.props.difficulty}`, {
+    const gameId = window.localStorage.getItem('gameId')
+    if (gameId) {
+      window.fetch(`${API_URL}/games/${gameId}`)
+      .then((response) => {
+        return response.json()
+      }).then((data) => {
+        if (data.state === 'won' || data.state === 'lost') {
+          this.createGame()
+        } else {
+          this.setState(data)
+        }
+      })
+    } else {
+      this.createGame()
+    }
+  }
+
+  createGame () {
+    window.fetch(`${API_URL}/games?difficulty=1`, {
       method: 'POST'
     }).then((response) => {
       return response.json()
     }).then((data) => {
+      window.localStorage.setItem('gameId', data.id)
       this.setState(data)
     })
   }
@@ -55,18 +74,16 @@ class Game extends Component {
       return <tr key={i}>{cells}</tr>
     })
     return <div>
-      <h1>Bomb Sniffer!</h1>
+      <h1>Meep Some Swine!</h1>
       <table>
         <tbody>
           {rows}
         </tbody>
       </table>
+      <h2>Instructions:</h2>
+      <p>Your pigs have gone crazy and, as all farmers know, Crazy Pigs need to be Meeped!  Click a cell to begin cleaning the pen. The numbers tell you how many pigs are in the adjacent cells.  Right-Click to Flag where you think your pigs are hiding. -BUT- Be careful not to startle the swine!</p>
     </div>
   }
 }
 
-Game.propTypes = {
-  difficulty: React.PropTypes.string.isRequired
-}
-
-export default Game
+export default App

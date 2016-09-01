@@ -1,24 +1,27 @@
 @import 'utility'
-
+@import url('https://fonts.googleapis.com/css?family=Sigmar+One')
+$Swine: 'Sigmar One'
 $base-text-size: 16px
-$base-font-family: "VT323", monospace
-
-html
-  text-size-adjust: 100%
+$swineColor: #e68199
+$meepColor: #5f2f10
 
 body
   @include font-smoothing(on)
   margin: 0
-  font: $base-text-size / 1 $base-font-family
-  background-image: url("../images/background.png")
+  font: $base-text-size / 1 $Swine
+  background-image: url("http://img10.deviantart.net/bcec/i/2014/330/f/c/background__barn_2_by_estories-d87lnw2.png")
   background-size: cover
-  background-repeat: no-repeat
-  min-height: 100vh
+
 
 h1
-  margin-bottom: 1.5em
-  margin-top: 0
-  color: #D7DEE1
+  font-size: 75px
+  color: $swineColor
+  text-shadow: 7px 5px 2px $meepColor
+  text-align: center
+
+.Select
+  color: $swineColor
+  text-shadow: 0px 3px 1px $meepColor
 
 #root > div
   display: flex
@@ -29,6 +32,8 @@ h1
 
 table
   border-spacing: 0
+  margin-left: auto
+  margin-right: auto
 
   td
     height: 16px
@@ -48,15 +53,26 @@ table
       background-size: 60%, contain
 
     &.bomb
-      background-image: url("../images/bomb.png"), url("../images/red.png")
+      background-image: url("../images/pig-cartoon.png"), url("../images/red.png")
       background-size: 60%, contain
 
     &.unrevealed
       background-image: url("../images/unrevealed.png")
 
     &.flag-bomb
-      background-image: url("../images/bomb.png"), url("../images/green.png")
+      background-image: url("../images/pig-cartoon.png"), url("../images/green.png")
       background-size: 60%, contain
 
     &.empty, &.flagged, &.bomb, &.flag-bomb
       color: transparent
+
+h2
+  font-size: 30px
+  color: $swineColor
+  text-shadow: 7px 5px 2px $meepColor
+  margin-left: 10px
+
+p
+  color: $meepColor
+  text-shadow: 1px 2px 1px $swineColor
+  margin-left: 20px

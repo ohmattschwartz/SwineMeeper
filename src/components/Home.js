@@ -3,19 +3,21 @@ import { Select } from 'rebass'
 
 class Home extends Component {
   _handleClick = () => {
-    let select =
-    document.querySelector("select[name = 'difficulty_level']")
+    let select = document.querySelector("select[name='difficulty_level']")
     let difficulty = select.value
     this.props.play('game', difficulty)
   }
   render () {
     return <div className="Home">
-      <h1>BOMBSNIFFER</h1>
+      <h1>SwineMeeper</h1>
       <Select
-        label="Select Your Difficulty"
+        label="Manage your Meeping"
         name="difficulty_level"
-        options={[{children: 'Hard', value: 2}, {children: 'Medium', value: 1}, {children: 'Easy', value: 0}]} />
-      <button onClick={this._handleClick}>Start Game</button>
+        options={[{children: 'MassiveMeeps', value: 2}, {children: 'MiddleMeeps', value: 1}, {children: 'ManageableMeeps', value: 0}]}
+        rounded
+      />
+      <br />
+      <button onClick={this._handleClick}>Meep Some Swine!</button>
     </div>
   }
 }
